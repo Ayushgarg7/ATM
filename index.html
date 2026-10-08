@@ -4,94 +4,144 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/png" id="logo" href="images.png" />
-    <title>Automated Teller Machine</title>
+    <title>Cyber ATM Terminal</title>
     <link rel="stylesheet" href="style.css" />
+    <!-- Google Fonts: Space Grotesk for a tech/cyber feel -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for icons -->
+    <script src="https://kit.fontawesome.com/0c7fc75b05.js" crossorigin="anonymous"></script>
   </head>
 
   <body>
-    <h1>Automated Teller Machine</h1>
+    <!-- Wrapper to keep ATM centered vertically -->
+    <main class="main-wrapper">
+      <div class="atm-machine">
+      <header class="atm-header">
+        <h1><i class="fa-solid fa-microchip"></i> CYBER ATM</h1>
+        <p class="status-indicator"><span class="dot"></span> SECURE TERMINAL ONLINE</p>
+      </header>
 
-    <div class="container">
-      <div class="panel">
-        <h2>Create Account</h2>
-        <label for="name">Name:</label>
-        <input type="text" id="name" required />
-        <label for="accountNumber">Account Number (4-6 digits):</label>
-        <input type="number" id="accountNumber" required pattern="\d{4,6}" />
-        <label for="pin">PIN (4-6 digits):</label>
-        <input type="number" id="pin" required pattern="\d{4,6}" />
-        <label for="initialBalance">Initial Balance:</label>
-        <input type="number" id="initialBalance" required />
-        <button onclick="createAccount()">Create Account</button>
+      <div class="container grid-layout">
+        
+        <!-- Create Account Panel -->
+        <div class="panel glass-panel">
+          <h2><i class="fa-solid fa-user-plus"></i> Initialize Account</h2>
+          <div class="input-group">
+            <label for="name">User Name</label>
+            <input type="text" id="name" placeholder="Enter full name" required />
+          </div>
+          <div class="input-group">
+            <label for="accountNumber">Account UID (4-6 digits)</label>
+            <input type="number" id="accountNumber" placeholder="e.g. 1024" required pattern="\d{4,6}" />
+          </div>
+          <div class="input-group">
+            <label for="pin">Security PIN</label>
+            <input type="password" id="pin" placeholder="****" required pattern="\d{4,6}" />
+          </div>
+          <div class="input-group">
+            <label for="initialBalance">Initial Deposit ($)</label>
+            <input type="number" id="initialBalance" placeholder="0.00" required />
+          </div>
+          <button class="neon-btn cyan-btn" onclick="createAccount()"><i class="fa-solid fa-bolt"></i> Create Account</button>
+        </div>
+
+        <!-- Deposit Panel -->
+        <div class="panel glass-panel">
+          <h2><i class="fa-solid fa-money-bill-transfer"></i> Deposit Funds</h2>
+          <div class="input-group">
+            <label for="depositAccountNumber">Account UID</label>
+            <input type="number" id="depositAccountNumber" placeholder="e.g. 1024" required pattern="\d{4,6}" />
+          </div>
+          <div class="input-group">
+            <label for="depositPIN">Security PIN</label>
+            <input type="password" id="depositPIN" placeholder="****" required pattern="\d{4,6}" />
+          </div>
+          <div class="input-group">
+            <label for="depositAmount">Amount ($)</label>
+            <input type="number" id="depositAmount" placeholder="0.00" required />
+          </div>
+          <button class="neon-btn green-btn" onclick="deposit()"><i class="fa-solid fa-arrow-up"></i> Deposit</button>
+        </div>
+
+        <!-- Withdraw Panel -->
+        <div class="panel glass-panel">
+          <h2><i class="fa-solid fa-hand-holding-dollar"></i> Withdraw Funds</h2>
+          <div class="input-group">
+            <label for="withdrawAccountNumber">Account UID</label>
+            <input type="number" id="withdrawAccountNumber" placeholder="e.g. 1024" required pattern="\d{4,6}" />
+          </div>
+          <div class="input-group">
+            <label for="withdrawPIN">Security PIN</label>
+            <input type="password" id="withdrawPIN" placeholder="****" required pattern="\d{4,6}" />
+          </div>
+          <div class="input-group">
+            <label for="withdrawAmount">Amount ($)</label>
+            <input type="number" id="withdrawAmount" placeholder="0.00" required />
+          </div>
+          <button class="neon-btn purple-btn" onclick="withdraw()"><i class="fa-solid fa-arrow-down"></i> Withdraw</button>
+        </div>
+        
+        <div class="side-panels">
+          <!-- Display Account -->
+          <div class="panel glass-panel">
+            <h2><i class="fa-solid fa-magnifying-glass"></i> Check Balance</h2>
+            <div class="input-group">
+              <label for="displayAccountNumber">Account UID</label>
+              <input type="number" id="displayAccountNumber" placeholder="e.g. 1024" required pattern="\d{4,6}" />
+            </div>
+            <button class="neon-btn blue-btn" onclick="displayAccount()"><i class="fa-solid fa-eye"></i> View Details</button>
+          </div>
+
+          <!-- Delete Account -->
+          <div class="panel glass-panel danger-panel">
+            <h2><i class="fa-solid fa-triangle-exclamation"></i> Terminate Account</h2>
+            <div class="input-group">
+              <label for="deleteAccountNumber">Account UID</label>
+              <input type="number" id="deleteAccountNumber" placeholder="e.g. 1024" required pattern="\d{4,6}" />
+            </div>
+            <button class="neon-btn red-btn" onclick="deleteAccount()"><i class="fa-solid fa-trash"></i> Delete Account</button>
       </div>
+    </main>
 
-      <div class="panel">
-        <h2>Delete Account</h2>
-        <label for="deleteAccountNumber">Account Number (4-6 digits):</label>
-        <input
-          type="number"
-          id="deleteAccountNumber"
-          required
-          pattern="\d{4,6}"
-        />
-        <button onclick="deleteAccount()">Delete Account</button>
+    <!-- Separate Site Footer -->
+    <footer class="site-footer">
+      <div class="footer-content">
+        <div class="social-auth">
+          <a href="https://github.com/Ayushgarg7" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a>
+          <a href="https://www.linkedin.com/in/ayush-garg-258784221/" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="mailto:ayushgarg1827@gmail.com" target="_blank" title="Email"><i class="fa-solid fa-envelope"></i></a>
+        </div>
+        <p>&copy; Ayush Kumar Garg. Secured Terminal.</p>
       </div>
+    </footer>
 
-      <div class="panel">
-        <h2>Deposit</h2>
-        <label for="depositAccountNumber">Account Number (4-6 digits):</label>
-        <input
-          type="number"
-          id="depositAccountNumber"
-          required
-          pattern="\d{4,6}"
-        />
-        <label for="depositPIN">PIN (4-6 digits):</label>
-        <input type="number" id="depositPIN" required pattern="\d{4,6}" />
-        <label for="depositAmount">Amount to Deposit:</label>
-        <input type="number" id="depositAmount" required />
-        <button onclick="deposit()">Deposit</button>
+    <!-- Output Div (Kept for compatibility with script, hidden via CSS) -->
+    <div id="output" style="display: none;"></div>
+
+    <!-- Modal Popup -->
+    <div class="popup-overlay" id="popup-wrapper">
+      <div class="popup glass-panel" id="popup">
+        <h2><i class="fa-solid fa-circle-info"></i> System Message</h2>
+        <div id="popup-content" class="popup-text"></div>
+        <button class="neon-btn cyan-btn" onclick="closePopup()"><i class="fa-solid fa-check"></i> Acknowledge</button>
       </div>
-
-      <div class="panel">
-        <h2>Withdraw</h2>
-        <label for="withdrawAccountNumber">Account Number (4-6 digits):</label>
-        <input
-          type="number"
-          id="withdrawAccountNumber"
-          required
-          pattern="\d{4,6}"
-        />
-        <label for="withdrawPIN">PIN (4-6 digits):</label>
-        <input type="number" id="withdrawPIN" required pattern="\d{4,6}" />
-        <label for="withdrawAmount">Amount to Withdraw:</label>
-        <input type="number" id="withdrawAmount" required />
-        <button onclick="withdraw()">Withdraw</button>
-      </div>
-    </div>
-
-    <div class="container">
-      <div class="panel">
-        <h2>Display Account</h2>
-        <label for="displayAccountNumber">Account Number (4-6 digits):</label>
-        <input
-          type="number"
-          id="displayAccountNumber"
-          required
-          pattern="\d{4,6}"
-        />
-        <button onclick="displayAccount()">Display Account</button>
-      </div>
-    </div>
-
-    <div id="output"></div>
-
-    <div class="popup" id="popup">
-      <h2>Account Details</h2>
-      <div id="popup-content"></div>
-      <button onclick="closePopup()">Close</button>
     </div>
 
     <script src="script.js"></script>
+    <script>
+      // Slightly modify the closePopup logic to hide the overlay wrapper in this new theme
+      const originalShow = showPopup;
+      const originalClose = closePopup;
+      
+      showPopup = function(message) {
+        document.getElementById("popup-wrapper").style.display = "flex";
+        originalShow(message);
+      }
+      
+      closePopup = function() {
+        document.getElementById("popup-wrapper").style.display = "none";
+        originalClose();
+      }
+    </script>
   </body>
 </html>
